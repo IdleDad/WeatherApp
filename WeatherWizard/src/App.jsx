@@ -1,8 +1,8 @@
+// App.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LocationField from "./components/LocationField";
 import CityDateDisplay from "./components/CityDateDisplay";
-import WeatherCityDisplay from "./components/WeatherCityDisplay";
 import FiveDayForecast from "./components/FiveDayForecast";
 
 function App() {
@@ -56,12 +56,16 @@ function App() {
   }, [location]);
 
   return (
-    <div className="app">
-      {console.log("all", currentData)}
+    <div className="app" style={{ textAlign: "center", background: "linear-gradient(45deg, #4D8BC5, #003366)", minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+      <h1 style={{ color: "#fff", marginBottom: "20px", textShadow: "2px 2px 4px #000" }}>Weather Wiz</h1>
       <CityDateDisplay data={currentData} />
-      <WeatherCityDisplay data={currentData} />
+      <div style={{ margin: "20px", padding: "10px", borderRadius: "15px", border: "2px solid #fff", boxShadow: "0 0 10px #fff", backgroundColor: "rgba(255, 255, 255, 0.2)" }}>
+        <h2 style={{ fontSize: "4em", color: "#fff", textShadow: "2px 2px 4px #000", padding: "5px 10px", borderRadius: "15px" }}>{currentData.main && currentData.main.temp.toFixed()}°F</h2>
+      </div>
       <FiveDayForecast forecast={forecastData} />
-      <LocationField location={location} setLocation={setLocation} />
+      <div style={{ marginTop: "20px" }}>
+        <LocationField location={location} setLocation={setLocation} searchLocation={() => {}} />
+      </div>
     </div>
   );
 }
